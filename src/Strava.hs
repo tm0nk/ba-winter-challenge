@@ -17,6 +17,7 @@ import qualified Data.Text as T
 import Data.Time.Calendar (Day)
 import Data.Time.Clock (UTCTime)
 import Data.Time.Format (formatTime)
+import Debug.Trace
 import Network.HTTP.Conduit
 
 import System.Locale (defaultTimeLocale)
@@ -68,7 +69,7 @@ rideDetails rid manager = getJSON ("http://app.strava.com/api/v2/rides/" ++ (sho
 getJSON :: (FromJSON a, Failure HttpException m, MonadBaseControl IO m, MonadResource m) => String -> Manager -> m a
 getJSON urlString manager = do
     --response <- simpleHTTP (getRequest_ urlString)
-    req <- parseUrl urlString
+    req <- trace ("parseUrl " ++ show urlString) (parseUrl urlString)
     body <- httpLbs req manager
     case decode' (responseBody body) of
         Just a -> return a
