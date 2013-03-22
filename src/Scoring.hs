@@ -10,7 +10,8 @@ module Scoring (
   groupScore,
 
   renderGroups,
-  renderScores
+  renderScores,
+  renderScore
 ) where
 
 import Data.Data (Data)
@@ -105,16 +106,18 @@ renderScores scores = table $ do
 renderScores scores = ol $ do
     mapM_ row $ reverse $ sort scores
     where
-    row us = li $ do
-        a ! href (toValue $ "http://app.strava.com/athletes/" ++ (show $ uid us)) $ toHtml $ name us
-        _ <- ": "
-        td $ toHtml $ userScore us
-        _ <- " points ("
-        toHtml (days us)
-        _ <- " days, "
-        toHtml (floor $ miles us :: Int)
-        " miles)"
+    row us = (if (userScore us > 0) then renderScore us else "")
 
+renderScore :: UserScore -> Html
+renderScore score = li $ do
+        a ! href (toValue $ "http://app.strava.com/athletes/" ++ (show $ uid score)) $ toHtml $ name score
+        _ <- ": "
+        td $ toHtml $ userScore score
+        _ <- " points ("
+        toHtml (days score)
+        _ <- " days, "
+        toHtml (floor $ miles score :: Int)
+        " miles)"
 
 renderGroups :: [GroupScore] -> Html
 renderGroups groups = ol $ mapM_ groupHtml $ reverse $ sort groups

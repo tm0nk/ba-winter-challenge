@@ -168,6 +168,6 @@ render config ztime userScores groupScores = docTypeHtml $ do
                 " total points earned"
         p $ do
             _ <- "Last update at "
-            toHtml $ formatTime defaultTimeLocale "%T on %D" ztime
-        p $ a ! href "https://github.com/ronwalf/ba-winter-challenge" $ "Get the BA-Winter Challenge Code!"
+            toHtml $ formatTime defaultTimeLocale "%T %Z on %D" ztime
+        p $ a ! href "https://github.com/tm0nk/ba-winter-challenge" $ "Get the eBay Cycling Club Challenge code!"
             

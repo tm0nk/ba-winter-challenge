@@ -1,12 +1,11 @@
 {
     "title" : "eBay Cycling Club Challenge",
-    "desc" : "<p>Here's the scoreboard for the eBay Cycling Club Challenge.  Please remember to put \"#NoECCC\" on any of your activities which are not outdoor bike rides!</p>",
+    "desc" : "<p>Here's the scoreboard for the eBay Cycling Club Challenge.</p>",
     "filters" : ["#NoECCC"],
     "directory" : "html",
     "authtoken" : "",
     "groups" : [
         1,
-        17,
         187,
         1107,
         1969,
