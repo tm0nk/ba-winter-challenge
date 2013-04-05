@@ -32,7 +32,7 @@ import Text.Blaze.Html5.Attributes hiding (title, rows, accept, name, id)
 import Strava (RideDetails(..))
 
 rideMiles :: RideDetails -> Double
-rideMiles = (*0.00062137119) . rideDistance
+rideMiles ride = (if (rideDistance ride < 1609344.0) then (0.00062137119 * rideDistance ride) else 0.0)
 
 data UserScore = UserScore {
     uid :: !Integer,
