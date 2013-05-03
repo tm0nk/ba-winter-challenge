@@ -48,7 +48,7 @@ data UserScore = UserScore {
 emptyScore :: Integer -> T.Text -> UserScore
 emptyScore myuid n = UserScore myuid n 0 0 0 (fromGregorian 0 0 0) 0 0
 userScore :: UserScore -> Int
-userScore score = 10 * days score + floor (miles score)
+userScore score = 20 * days score + floor (miles score)
 
 instance Ord UserScore where
     compare = compare `on` (\u -> (userScore u, uid u))
